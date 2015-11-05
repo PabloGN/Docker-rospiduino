@@ -6,8 +6,8 @@ MAINTAINER Pablo González Nalda pablo.gonzalez@ehu.eus
 USER root
 
 RUN     apt-get update && \
-	apt-get install --no-install-recommends -y arduino arduino-core arduino-mk &&  \
-	ros-indigo-rosserial-arduino && \
+	apt-get install --no-install-recommends -y arduino arduino-core arduino-mk \
+	ros-indigo-rosserial ros-indigo-rosserial-arduino && \
 	rm -rf /var/lib/apt/lists/*
 	
 # setup entrypoint
