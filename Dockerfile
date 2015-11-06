@@ -10,17 +10,15 @@ RUN apt-get update && \
         ros-indigo-rosserial-arduino ros-indigo-rosserial && \
         rm -rf /var/lib/apt/lists/* 
 
-RUN mkdir -p /home/pi/sketchbook/libraries && \
-        cd /home/pi/sketchbook/libraries && \
-        rm -rf ros_lib && \
-        chmod a+x /opt/ros/indigo/setup.sh 
-
-USER pi
+RUN mkdir -p /usr/share/arduino/ && \
+        cd /usr/share/arduino/ && \
+        rm -rf ros_lib 
 
 RUN bash -c "source /opt/ros/indigo/setup.sh && rosrun rosserial_arduino make_libraries.py . "
+
+USER pi
 
 # setup entrypoint
 WORKDIR /home/pi/
 ENTRYPOINT ["./rep.sh"]
 CMD ["/bin/bash"]
-
